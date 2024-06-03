@@ -7,7 +7,6 @@ from newspaper import Article
 from newspaper import Config
 import preprocessor as p
 import pandas as pd
-import grequests
 
 st.write("""
 # ESG Prediction App
