@@ -5,3 +5,4 @@ beautifulsoup4==4.12.3
 urllib3==2.2.1
 newspaper3k==0.2.8
 pandas==2.2.2
+lxml_html_clean==0.1.1
