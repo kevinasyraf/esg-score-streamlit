@@ -144,9 +144,9 @@ if company:
     def sentiment_analysis(row):
         return sentiment_classifier(row['news'])
     
-    df['esg_category'] = df.apply(esg_categorization, axis=1)
+    # df['esg_category'] = df.apply(esg_categorization, axis=1)
 
-    df['sentiment'] = df.apply(sentiment_analysis, axis=1)
+    # df['sentiment'] = df.apply(sentiment_analysis, axis=1)
 
     st.dataframe(df)
 
