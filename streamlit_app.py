@@ -127,22 +127,22 @@ if company:
     # tested in transformers==4.18.0 
     from transformers import BertTokenizer, BertForSequenceClassification, pipeline
 
-    finbert = BertForSequenceClassification.from_pretrained('yiyanghkust/finbert-esg',num_labels=4)
-    tokenizer = BertTokenizer.from_pretrained('yiyanghkust/finbert-esg')
-    nlp = pipeline("text-classification", model=finbert, tokenizer=tokenizer)
+    # finbert = BertForSequenceClassification.from_pretrained('yiyanghkust/finbert-esg',num_labels=4)
+    # tokenizer = BertTokenizer.from_pretrained('yiyanghkust/finbert-esg')
+    # nlp = pipeline("text-classification", model=finbert, tokenizer=tokenizer)
     # results = nlp('Rhonda has been volunteering for several years for a variety of charitable community programs.')
     # print(results) # [{'label': 'Social', 'score': 0.9906041026115417}]
 
-    sentiment_classifier = pipeline(
-        model="lxyuan/distilbert-base-multilingual-cased-sentiments-student", 
-        return_all_scores=True
-    )
+    # sentiment_classifier = pipeline(
+    #     model="lxyuan/distilbert-base-multilingual-cased-sentiments-student", 
+    #     return_all_scores=True
+    # )
 
-    def esg_categorization(row):
-        return nlp(row['news'])
+    # def esg_categorization(row):
+    #     return nlp(row['news'])
     
-    def sentiment_analysis(row):
-        return sentiment_classifier(row['news'])
+    # def sentiment_analysis(row):
+    #     return sentiment_classifier(row['news'])
     
     # df['esg_category'] = df.apply(esg_categorization, axis=1)
 
