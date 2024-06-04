@@ -11,3 +11,4 @@ transformers==4.41.0
 torch==2.3.0
 torchaudio==2.3.0
 torchvision==0.18.0
+google-api-python-client==2.131.0
