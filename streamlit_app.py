@@ -371,7 +371,7 @@ if company:
 
     url_collection = [item['link'] for item in response]
 
-    user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (HTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
     config = Config()
     config.browser_user_agent = user_agent
     config.request_timeout = 60
