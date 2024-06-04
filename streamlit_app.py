@@ -370,6 +370,8 @@ if company:
     response = google_search(query, API_KEY, SEARCH_ENGINE_ID, num=100)
 
     url_collection = [item['link'] for item in response]
+    import os
+    os.environ['ST_USER_AGENT'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
 
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
     config = Config()
