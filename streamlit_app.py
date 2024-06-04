@@ -8,6 +8,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import numpy as np
 import torch.nn.functional as F
+from goose3 import Goose
 
 st.write("""
 # ESG Prediction App
@@ -396,11 +397,15 @@ if company:
         lang = "id"
         if "eco-business.com" in url or "thejakartapost.com" in url or "marketforces.org.au" in url or "jakartaglobe.id" in url:
             lang = "en"
-        article = Article(url, language=lang, config=config)
-        article.download()
-        article.parse()
-        article_clean = cleaner(article.text)
-        news_text.append(article_clean)
+
+        # article = Article(url, language=lang, config=config)
+        # article.download()
+        # article.parse()
+        # article_clean = cleaner(article.text)
+        goose = Goose()
+        article = goose.extract(url=url)
+
+        news_text.append(article.cleaned_text)
 
     df = pd.DataFrame({
         'news': news_text
