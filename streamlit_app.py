@@ -1,15 +1,9 @@
 import streamlit as st
 import re
-from bs4 import BeautifulSoup as BS
 from newspaper import Article
 from newspaper import Config
 import preprocessor as p
 import pandas as pd
-import random
-import requests
-from duckduckgo_search import DDGS, AsyncDDGS
-import asyncio
-import json
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import numpy as np
