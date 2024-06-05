@@ -9,6 +9,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import numpy as np
 import torch.nn.functional as F
 from goose3 import Goose
+from goose3.configuration import Configuration  
 
 st.write("""
 # ESG Prediction App
@@ -403,9 +404,15 @@ if company:
         # article.parse()
         # article_clean = cleaner(article.text)
         goose = Goose()
-        article = goose.extract(url=url)
+        config = Configuration()
+        config.strict = False  # turn of strict exception handling
+        config.browser_user_agent = 'Mozilla 5.0'  # set the browser agent string
+        config.http_timeout = 5.05  # set http timeout in seconds
+        
+        with Goose(config) as g:
+            article = goose.extract(url=url)
 
-        news_text.append(article.cleaned_text)
+            news_text.append(article.cleaned_text)
 
     df = pd.DataFrame({
         'news': news_text
