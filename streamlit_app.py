@@ -437,7 +437,7 @@ if company:
         g = Goose()
         article = g.extract(raw_html=html)
 
-        print(article.cleaned_text)
+        # print(article.cleaned_text)
 
         news_text.append(article.cleaned_text)
 
