@@ -1,5 +1,6 @@
 import streamlit as st
 import re
+import requests
 from newspaper import Article
 from newspaper import Config
 import preprocessor as p
@@ -400,42 +401,56 @@ if company:
             lang = "en"
 
         ### Selenium
-        from selenium import webdriver
-        from selenium.webdriver.chrome.options import Options
-        from goose3 import Goose
+        # from selenium import webdriver
+        # from selenium.webdriver.chrome.options import Options
+        # from goose3 import Goose
 
-        options = Options()
-        options.headless = True
-        options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+        # options = Options()
+        # options.headless = True
+        # options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 
-        driver = webdriver.Chrome(options=options)
-        # url = 'https://example.com/news-article'
-        driver.get(url)
+        # driver = webdriver.Chrome(options=options)
+        # # url = 'https://example.com/news-article'
+        # driver.get(url)
 
-        html = driver.page_source
-        driver.quit()
+        # html = driver.page_source
+        # driver.quit()
 
-        g = Goose()
-        article = g.extract(raw_html=html)
+        # g = Goose()
+        # article = g.extract(raw_html=html)
 
-        print(article.cleaned_text)
-        news_text.append(article.cleaned_text)
+        # print(article.cleaned_text)
+        # news_text.append(article.cleaned_text)
         ###
 
         # article = Article(url, language=lang, config=config)
         # article.download()
         # article.parse()
         # article_clean = cleaner(article.text)
-        goose = Goose()
-        config = Configuration()
-        config.strict = False  # turn of strict exception handling
-        config.browser_user_agent = 'Mozilla 5.0'  # set the browser agent string
-        config.http_timeout = 5.05  # set http timeout in seconds
 
-        with Goose(config) as g:
-            article = goose.extract(url=url)
+        # url = 'https://example.com/news-article'
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
 
-            news_text.append(article.cleaned_text)
+        response = requests.get(url, headers=headers)
+        html = response.text
+
+        g = Goose()
+        article = g.extract(raw_html=html)
+
+        print(article.cleaned_text)
+
+        news_text.append(article.cleaned_text)
+
+        # goose = Goose()
+        # config = Configuration()
+        # config.strict = False  # turn of strict exception handling
+        # config.browser_user_agent = 'Mozilla 5.0'  # set the browser agent string
+        # config.http_timeout = 5.05  # set http timeout in seconds
+
+        # with Goose(config) as g:
+        #     article = goose.extract(url=url)
+
+        #     news_text.append(article.cleaned_text)
 
     df = pd.DataFrame({
         'news': news_text
