@@ -11,6 +11,7 @@ import numpy as np
 import torch.nn.functional as F
 from goose3 import Goose
 from goose3.configuration import Configuration  
+from bs4 import BeautifulSoup
 
 st.write("""
 # ESG Prediction App
@@ -432,14 +433,23 @@ if company:
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
 
         response = requests.get(url, headers=headers)
-        html = response.text
+        # html = response.text
+
+        soup = BeautifulSoup(response.content, 'html.parser')
 
         g = Goose()
-        article = g.extract(raw_html=html)
+        article = g.extract(raw_html=str(soup))
+
+        if not article.cleaned_text:
+            article_content = soup.find('div', class_='article-content')
+            if article_content:
+                news_text.append(article_content.get_text())
+        else:
+            news_text.append(article.cleaned_text)
 
         # print(article.cleaned_text)
 
-        news_text.append(article.cleaned_text)
+        
 
         # goose = Goose()
         # config = Configuration()
