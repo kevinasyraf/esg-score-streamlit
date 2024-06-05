@@ -399,6 +399,29 @@ if company:
         if "eco-business.com" in url or "thejakartapost.com" in url or "marketforces.org.au" in url or "jakartaglobe.id" in url:
             lang = "en"
 
+        ### Selenium
+        from selenium import webdriver
+        from selenium.webdriver.chrome.options import Options
+        from goose3 import Goose
+
+        options = Options()
+        options.headless = True
+        options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+
+        driver = webdriver.Chrome(options=options)
+        # url = 'https://example.com/news-article'
+        driver.get(url)
+
+        html = driver.page_source
+        driver.quit()
+
+        g = Goose()
+        article = g.extract(raw_html=html)
+
+        print(article.cleaned_text)
+        news_text.append(article.cleaned_text)
+        ###
+
         # article = Article(url, language=lang, config=config)
         # article.download()
         # article.parse()
@@ -408,7 +431,7 @@ if company:
         config.strict = False  # turn of strict exception handling
         config.browser_user_agent = 'Mozilla 5.0'  # set the browser agent string
         config.http_timeout = 5.05  # set http timeout in seconds
-        
+
         with Goose(config) as g:
             article = goose.extract(url=url)
 
