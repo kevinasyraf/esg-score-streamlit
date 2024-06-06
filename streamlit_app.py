@@ -134,7 +134,7 @@ if company:
         # print(soup)
         news_empty = True
 
-        possible_class = ['detail', 'body-content', 'article-content', 'detail-konten']
+        possible_class = ['detail', 'body-content', 'article-content', 'detail-konten', 'DetailBlock']
         excluded_sentence = ['Komentar menjadi tanggung-jawab Anda sesuai UU ITE', 'Dapatkan berita terbaru dari kami Ikuti langkah ini untuk mendapatkan notifikasi:']
 
         if not article.cleaned_text:
