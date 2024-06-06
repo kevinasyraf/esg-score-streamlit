@@ -290,6 +290,7 @@ if company:
     # st.dataframe(df)
 
     st.write(company)
-    st.write(f'ESG Score Prediction: {ESG_score}')
+    print(f'ESG Score Prediction: {ESG_score}')
+    # st.write(f'ESG Score Prediction: {ESG_score}')
     st.write(f'ESG Category Risk Prediction: {risk}')
 
