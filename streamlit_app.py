@@ -62,7 +62,7 @@ if company:
     news_text = []
     
     query = f'{company} after:2023-01-01'
-    response = google_search(query, API_KEY, SEARCH_ENGINE_ID, num=50)
+    response = google_search(query, API_KEY, SEARCH_ENGINE_ID, num=10)
 
     url_collection = [item['link'] for item in response]
     import os
