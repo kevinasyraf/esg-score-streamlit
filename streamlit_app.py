@@ -57,6 +57,7 @@ def google_search(search_term, api_key, cse_id, **kwargs):
     return items_to_return 
 
 if company:
+    print(f'Run: {company}')
     links = []
     news_text = []
     
@@ -132,7 +133,7 @@ if company:
 
         # print(url)
         # print(soup)
-        news_empty = True
+        # news_empty = True
 
         possible_class = ['detail', 'body-content', 'article-content', 'detail-konten', 'DetailBlock']
         excluded_sentence = ['Komentar menjadi tanggung-jawab Anda sesuai UU ITE', 'Dapatkan berita terbaru dari kami Ikuti langkah ini untuk mendapatkan notifikasi:']
@@ -142,15 +143,15 @@ if company:
             if article_content and article_content.get_text() not in excluded_sentence:
                 news_text.append(article_content.get_text())
                 news_empty = False
-                print(f'{url} News Exist using POSSIBLE CLASS')
+                # print(f'{url} News Exist using POSSIBLE CLASS')
         else:
             if article.cleaned_text not in excluded_sentence:
                 news_text.append(article.cleaned_text)
                 news_empty = False
-                print(f'{url} News Exist using ARTICLE CLEANED TEXT')
+                # print(f'{url} News Exist using ARTICLE CLEANED TEXT')
 
-        if news_empty:
-            print(f'Cannot Get URL: {url}')
+        # if news_empty:
+        #     print(f'Cannot Get URL: {url}')
             # print(soup)
 
         # print(article.cleaned_text)
