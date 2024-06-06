@@ -261,7 +261,7 @@ if company:
     # data['total'] = data['negative'] + data['positive']*(-1)
     if 'none' in data:
         data = data.drop('none')
-    data
+    # data
 
     total = data['total'].sum()
 
@@ -287,7 +287,7 @@ if company:
         
     risk = esg_risk_categorization(ESG_score)
 
-    st.dataframe(df)
+    # st.dataframe(df)
 
     st.write(company)
     st.write(f'ESG Score Prediction: {ESG_score}')
